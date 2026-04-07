@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pon Aswin Sankaralingam — Robotics Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+html{zoom:1.25;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#ffffff;
+  --bg2:#f7f6f2;
+  --bg3:#eeecea;
+  --border:#e2e0db;
+  --border2:#ccc9c2;
+  --accent:#1a1a2e;
+  --red:#c84b31;
+  --red2:#e07050;
+  --text:#18181b;
+  --muted:#6b6b6b;
+  --card:#ffffff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:17px;}
+a{color:inherit;text-decoration:none;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  height:64px;padding:0 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500;letter-spacing:0.05em;color:var(--text);}
+.nav-logo span{color:var(--red);}
+.nav-links{display:flex;align-items:center;gap:2.5rem;}
+.nav-links a{font-size:14px;color:var(--muted);transition:color .2s;letter-spacing:.02em;}
+.nav-links a:hover{color:var(--text);}
+.nav-icons{display:flex;gap:1.2rem;align-items:center;margin-left:1rem;}
+.nav-icons a{color:var(--muted);transition:color .2s;display:flex;align-items:center;}
+.nav-icons a:hover{color:var(--red);}
+
+/* ── HERO ── */
+#hero{
+  min-height:auto;display:flex;align-items:center;
+  padding:50px 5vw 40px;
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{max-width:1440px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:6rem;align-items:center;}
+.hero-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;
+  color:var(--red);letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:1.6rem;display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--red);}
+h1{font-family:'Fraunces',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:700;line-height:1.05;letter-spacing:-0.03em;margin-bottom:1.4rem;}
+h1 .name{display:block;color:var(--text);}
+h1 .role{display:block;color:var(--red);font-style:italic;}
+.hero-desc{font-size:18px;color:var(--muted);line-height:1.85;margin-bottom:2.5rem;max-width:560px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-fill{padding:13px 30px;background:var(--accent);color:#fff;border-radius:4px;font-size:15px;font-weight:600;letter-spacing:0.03em;transition:background .2s;border:none;cursor:pointer;}
+.btn-fill:hover{background:#2d2d4a;}
+.btn-ghost{padding:13px 30px;background:transparent;color:var(--text);border:1px solid var(--border2);border-radius:4px;font-size:15px;font-weight:500;cursor:pointer;transition:border-color .2s;}
+.btn-ghost:hover{border-color:var(--accent);}
+.hero-stats{display:flex;gap:3rem;flex-wrap:wrap;}
+.hstat-num{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:var(--red);line-height:1;}
+.hstat-label{font-size:13px;color:var(--muted);margin-top:4px;}
+
+/* hero profile card */
+.hero-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.hero-card-avatar{width:100%;aspect-ratio:1;background:var(--bg3);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.hero-card-avatar img{width:100%;height:100%;object-fit:cover;}
+.avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:var(--bg3);}
+.avatar-initials{font-family:'Fraunces',serif;font-size:80px;font-weight:700;color:var(--red);opacity:.35;}
+.avatar-hint{font-size:12px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+.hero-card-body{padding:1.5rem;}
+.hc-name{font-size:17px;font-weight:600;margin-bottom:4px;}
+.hc-title{font-size:12px;color:var(--red);font-family:'IBM Plex Mono',monospace;margin-bottom:1.2rem;letter-spacing:.04em;}
+.hc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.hc-row:last-child{border-bottom:none;}
+.hc-key{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;}
+.hc-val{color:var(--text);font-weight:500;text-align:right;}
+.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#16a34a;margin-right:6px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* ── LOGO STRIP ── */
+#logos{padding:2.5rem 5vw;border-bottom:1px solid var(--border);background:var(--bg2);}
+.logos-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-bottom:1.75rem;}
+.logos-row{display:flex;align-items:center;justify-content:center;gap:4vw;flex-wrap:wrap;}
+.logo-item{display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.5;transition:opacity .2s;}
+.logo-item:hover{opacity:1;}
+.logo-box{width:60px;height:60px;border-radius:10px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.logo-box img{width:100%;height:100%;object-fit:contain;padding:8px;}
+.logo-initials{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--accent);}
+.logo-name{font-size:11px;color:var(--muted);text-align:center;max-width:90px;line-height:1.35;}
+
+/* ── SECTION HEADINGS ── */
+.section-heading{text-align:center;padding:5.5rem 5vw 3.5rem;}
+.sh-tag{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;}
+.sh-title{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;color:var(--red);letter-spacing:-0.02em;margin-bottom:.6rem;}
+.sh-sub{font-size:17px;color:var(--muted);}
+
+/* ── PROJECTS ── */
+#projects{background:var(--bg);border-top:1px solid var(--border);}
+.projects-wrap{max-width:1440px;margin:0 auto;padding:0 5vw 6rem;}
+.proj-stack{display:flex;flex-direction:column;gap:2rem;}
+
+.proj-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  display:grid;grid-template-columns:1fr 1fr;
+  transition:box-shadow .2s,border-color .2s;
+}
+.proj-card.no-media{grid-template-columns:1fr;}
+.proj-card.no-media .proj-left{max-width:100%;}
+.proj-card:hover{border-color:var(--border2);box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+
+.proj-left{padding:2.6rem 3rem;display:flex;flex-direction:column;}
+.proj-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:.75rem;}
+.proj-category{
+  display:inline-block;font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--red);background:rgba(200,75,49,.08);
+  padding:4px 12px;border-radius:3px;margin-bottom:1rem;align-self:flex-start;
+}
+.proj-title{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2vw,1.85rem);font-weight:700;line-height:1.2;margin-bottom:1rem;color:var(--text);}
+.proj-desc{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:1.6rem;flex:1;}
+.proj-section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;font-family:'IBM Plex Mono',monospace;}
+.proj-tech-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.5rem;}
+.tech-pill{font-size:13px;padding:4px 14px;border-radius:20px;border:1px solid var(--border2);color:var(--text);background:transparent;transition:border-color .15s,color .15s;}
+.tech-pill:hover{border-color:var(--red);color:var(--red);}
+.proj-hl-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem;}
+.hl-pill{font-size:13px;padding:5px 14px;border-radius:20px;font-weight:500;}
+.hl-r{background:rgba(200,75,49,.1);color:#b33d25;}
+.hl-y{background:rgba(180,130,0,.1);color:#8a6500;}
+.hl-b{background:rgba(30,90,200,.1);color:#1a5abf;}
+.hl-g{background:rgba(22,163,74,.1);color:#15803d;}
+.proj-actions{display:flex;gap:12px;margin-top:auto;}
+.proj-btn{
+  display:flex;align-items:center;gap:8px;padding:9px 20px;border-radius:5px;
+  font-size:14px;font-weight:500;cursor:pointer;
+  border:1px solid var(--border2);color:var(--muted);background:transparent;
+  transition:border-color .2s,color .2s;
+}
+.proj-btn:hover{border-color:var(--accent);color:var(--accent);}
+.proj-btn svg{width:15px;height:15px;flex-shrink:0;}
+
+/* right media panel */
+.proj-right{
+  background:var(--bg2);border-left:1px solid var(--border);
+  display:flex;flex-direction:column;gap:1px;min-height:460px;
+}
+.media-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;flex:1;}
+.media-slot{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  background:var(--bg3);flex-direction:column;gap:8px;
+  padding:1.5rem;position:relative;overflow:hidden;transition:background .2s;
+}
+.media-slot.full{flex:1;}
+.media-slot:hover{background:var(--border);}
+.media-slot+.media-slot{border-top:1px solid var(--border);}
+.media-row .media-slot+.media-slot{border-top:none;border-left:1px solid var(--border);}
+.media-slot img,.media-slot video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.media-slot iframe{width:100%;height:100%;border:none;position:absolute;inset:0;}
+.media-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;}
+.media-icon{font-size:28px;opacity:.2;}
+.media-label{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;text-align:center;line-height:1.6;opacity:.6;}
+.media-caption{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);font-size:12px;color:#fff;padding:7px 12px;text-align:center;}
+
+/* ── RESEARCH ── */
+#research{background:var(--bg2);border-top:1px solid var(--border);}
+.research-wrap{max-width:1440px;margin:0 auto;padding:0 5vw 6rem;}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.res-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:border-color .2s,transform .2s;}
+.res-card:hover{border-color:var(--border2);transform:translateY(-3px);}
+.res-period{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.06em;margin-bottom:.75rem;}
+.res-org-logo{width:44px;height:44px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;overflow:hidden;}
+.res-org-logo img{width:100%;height:100%;object-fit:contain;padding:5px;}
+.res-org-initials{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);}
+.res-title{font-size:16px;font-weight:600;margin-bottom:.3rem;line-height:1.4;}
+.res-org{font-size:13px;color:var(--red);margin-bottom:.8rem;}
+.res-desc{font-size:14px;color:var(--muted);line-height:1.75;}
+
+/* ── SKILLS ── */
+#skills{background:var(--bg);border-top:1px solid var(--border);}
+.skills-wrap{max-width:1440px;margin:0 auto;padding:0 5vw 6rem;}
+.sk-group{margin-bottom:2.5rem;}
+.sk-group-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:1.25rem;}
+.sk-icon-row{display:flex;flex-wrap:wrap;gap:12px;}
+.sk-icon-item{display:flex;flex-direction:column;align-items:center;gap:7px;cursor:default;}
+.sk-icon-item img{width:56px;height:56px;border-radius:12px;border:1px solid var(--border);background:var(--bg2);padding:6px;object-fit:contain;transition:transform .2s,border-color .2s;}
+.sk-icon-item img:hover{transform:translateY(-3px);border-color:var(--border2);}
+.sk-text-icon-box{width:56px;height:56px;border-radius:12px;border:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--accent);transition:transform .2s,border-color .2s;}
+.sk-text-icon-box:hover{transform:translateY(-3px);border-color:var(--border2);}
+.sk-icon-label{font-size:11px;color:var(--muted);text-align:center;max-width:64px;line-height:1.3;}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--bg2);border-top:1px solid var(--border);}
+.exp-wrap{max-width:1440px;margin:0 auto;padding:0 5vw 6rem;}
+.exp-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:3.5rem;}
+.exp-tab{padding:10px 28px;border-radius:30px;font-size:15px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all .2s;}
+.exp-tab.active,.exp-tab:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+.exp-section{display:none;}
+.exp-section.active{display:block;}
+.exp-cards{display:flex;flex-direction:column;gap:1.25rem;}
+.exp-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  padding:2rem 2.4rem;display:grid;grid-template-columns:60px 1fr auto;gap:1.5rem;align-items:start;
+  transition:border-color .2s;
+}
+.exp-card:hover{border-color:var(--border2);}
+.exp-logo{width:52px;height:52px;border-radius:10px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+.exp-logo img{width:100%;height:100%;object-fit:contain;padding:6px;}
+.exp-logo-init{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);}
+.exp-period{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.06em;margin-bottom:.4rem;}
+.exp-role{font-size:17px;font-weight:600;margin-bottom:.25rem;}
+.exp-org{font-size:14px;color:var(--red);margin-bottom:.75rem;}
+.exp-desc{font-size:14px;color:var(--muted);line-height:1.75;}
+.exp-tags-col{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0;}
+.exp-tech-tag{font-size:11px;padding:4px 12px;border-radius:4px;background:rgba(200,75,49,.08);color:var(--red);font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+
+/* ── PUBLICATION ── */
+#publication{background:var(--bg);border-top:1px solid var(--border);}
+.pub-wrap{max-width:960px;margin:0 auto;padding:0 5vw 6rem;}
+.pub-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:2.5rem 3rem;position:relative;overflow:hidden;}
+.pub-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red);}
+.pub-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);background:rgba(200,75,49,.08);padding:4px 12px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem;}
+.pub-title{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;line-height:1.4;margin-bottom:.75rem;}
+.pub-venue{font-size:14px;color:var(--red);margin-bottom:1rem;}
+.pub-desc{font-size:15px;color:var(--muted);line-height:1.8;}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg2);border-top:1px solid var(--border);}
+.contact-wrap{max-width:1440px;margin:0 auto;padding:0 5vw 6rem;}
+.contact-inner{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:4.5rem;text-align:center;position:relative;overflow:hidden;}
+.contact-inner::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40%;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);}
+.contact-title{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;margin-bottom:.75rem;letter-spacing:-.02em;}
+.contact-sub{font-size:17px;color:var(--muted);margin-bottom:2.5rem;}
+.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.contact-btn{display:flex;align-items:center;gap:10px;padding:13px 26px;border:1px solid var(--border2);border-radius:6px;font-size:14px;color:var(--muted);font-family:'IBM Plex Mono',monospace;cursor:pointer;transition:border-color .2s,color .2s;background:transparent;}
+.contact-btn:hover{border-color:var(--red);color:var(--red);}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:1.75rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-l,.footer-r{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .proj-card{grid-template-columns:1fr;}
+  .proj-right{min-height:300px;border-left:none;border-top:1px solid var(--border);}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .res-grid{grid-template-columns:repeat(2,1fr);}
+  .exp-card{grid-template-columns:60px 1fr;}
+  .exp-tags-col{display:none;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-card{max-width:400px;}
+}
+@media(max-width:700px){
+  .res-grid,.skills-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  footer{flex-direction:column;text-align:center;}
+  .hero-stats{gap:1.5rem;}
+  .media-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">P<span>A</span>S</div>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Timeline</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-icons">
+    <a href="https://github.com/Ponaswin-03" target="_blank">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+    </a>
+    <a href="mailto:aswin03@umd.edu">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+    <a href="#">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Open to full-time opportunities</div>
+      <h1>
+        <span class="name">Pon Aswin</span>
+        <span class="name">Sankaralingam</span>
+        <span class="role">Robotics Engineer</span>
+      </h1>
+      <p class="hero-desc">MEng Robotics candidate at University of Maryland. Building autonomous systems that perceive, plan, and act — from LiDAR SLAM and AMR path planning to autonomous driving in CARLA, robotic manipulation, UAV autonomy, and quadruped navigation. Experienced with sim-to-real deployment on ModalAI Starling 2 drones using ROS2 and PX4.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-fill">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hstat-num">4</div><div class="hstat-label">Major Projects</div></div>
+        <div><div class="hstat-num">3</div><div class="hstat-label">Research Roles</div></div>
+        <div><div class="hstat-num">1st</div><div class="hstat-label">Competition Win</div></div>
+        <div><div class="hstat-num">IROS</div><div class="hstat-label">'26 Submission</div></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-avatar">
+        <img src="assets/pic.png" alt="Pon Aswin Sankaralingam">
+      </div>
+      <div class="hero-card-body">
+        <div class="hc-name">Pon Aswin Sankaralingam</div>
+        <div class="hc-title">MEng Robotics · UMD '26</div>
+        <div class="hc-row"><span class="hc-key">status</span><span class="hc-val"><span class="status-dot"></span>Seeking FT roles</span></div>
+        <div class="hc-row"><span class="hc-key">location</span><span class="hc-val">College Park, MD</span></div>
+        <div class="hc-row"><span class="hc-key">research</span><span class="hc-val">GAMMA Lab · PRG</span></div>
+        <div class="hc-row"><span class="hc-key">stack</span><span class="hc-val">ROS2 · C++ · Python</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO STRIP -->
+<div id="logos">
+  <div class="logos-label">Affiliated with</div>
+  <div class="logos-row">
+    <div class="logo-item">
+      <div class="logo-box"><img src="assets/umd.svg" alt="UMD"></div>
+      <div class="logo-name">Univ. of Maryland</div>
+    </div>
+    <div class="logo-item">
+      <div class="logo-box"><img src="assets/umd.svg" alt="GAMMA Lab"></div>
+      <div class="logo-name">Geometric Algorithms for Modeling, Motion and Animation Lab</div>
+    </div>
+    <div class="logo-item">
+      <div class="logo-box"><img src="assets/umd.svg" alt="PRG"></div>
+      <div class="logo-name">Perception &amp; Robotics Group</div>
+    </div>
+    <div class="logo-item">
+      <div class="logo-box"><img src="assets/isro.png" alt="ISRO"></div>
+      <div class="logo-name">Indian Space Research Organisation</div>
+    </div>
+    <div class="logo-item">
+      <div class="logo-box"><img src="assets/skcet.webp" alt="SKCET"></div>
+      <div class="logo-name">SKCET</div>
+    </div>
+    <div class="logo-item">
+      <div class="logo-box"><img src="assets/bi.png" alt="Brakes India"></div>
+      <div class="logo-name">Brakes India</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-heading">
+    <div class="sh-title">Selected Projects</div>
+    <div class="sh-sub">Key projects and achievements</div>
+  </div>
+  <div class="projects-wrap">
+    <div class="proj-stack">
+
+      <!-- PROJECT 1 -->
+      <div class="proj-card">
+        <div class="proj-left">
+          <div class="proj-num">01 / 04</div>
+          <span class="proj-category">Autonomous Driving · SLAM</span>
+          <div class="proj-title">Autonomous Driving Planning &amp; SLAM Stack</div>
+          <div class="proj-desc">Built a keyframe-based LiDAR odometry pipeline in ROS2 with scan-to-scan/map ICP matching and a sliding window local map manager, achieving &gt;10 Hz on KITTI Sequence 00 (4,541 frames, 4.5 km) with Z-drift &lt;4m. Integrated a Behavior Tree highway planner with a Frenet-frame trajectory planner for a full perception-to-control stack in CARLA.</div>
+          <div class="proj-section-label">Technologies:</div>
+          <div class="proj-tech-row">
+            <span class="tech-pill">ROS2</span><span class="tech-pill">Python</span><span class="tech-pill">CARLA</span><span class="tech-pill">Open3D</span><span class="tech-pill">KITTI</span><span class="tech-pill">ICP</span>
+          </div>
+          <div class="proj-section-label">Highlights:</div>
+          <div class="proj-hl-row">
+            <span class="hl-pill hl-r">&gt;10 Hz Odometry</span>
+            <span class="hl-pill hl-y">Z-drift &lt;4m / 4.5km</span>
+            <span class="hl-pill hl-b">Behavior Trees</span>
+            <span class="hl-pill hl-g">Frenet Planner</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Ponaswin-03/automated_vehicles_sensor_fusion" target="_blank" class="proj-btn">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Code
+            </a>
+          </div>
+        </div>
+        <div class="proj-right">
+          <!--
+            SLOT 1 (top-left): SLAM map / point cloud visualization
+            → <img src="slam_map.png" alt="SLAM map"> <div class="media-caption">LiDAR SLAM — KITTI Seq. 00</div>
+
+            SLOT 2 (top-right): CARLA driving screenshot
+            → <img src="carla.png" alt="CARLA">
+
+            SLOT 3 (bottom, full-width): Demo video
+            → <video autoplay muted loop playsinline src="slam_demo.mp4"></video>
+            → OR: <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+          -->
+          <div class="media-row">
+            <div class="media-slot">
+              <img src="assets/trajectory_full.png" alt="SLAM trajectory">
+            </div>
+            <div class="media-slot">
+              <img src="assets/scenario_overtake.png" alt="Overtake scenario">
+            </div>
+          </div>
+          <div class="media-slot full">
+            <video autoplay muted loop playsinline src="assets/rwa3_overtake.mp4"></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="proj-card">
+        <div class="proj-left">
+          <div class="proj-num">02 / 04</div>
+          <span class="proj-category">Computer Vision · Navigation</span>
+          <div class="proj-title">Perception-Driven Autonomous Navigation (TurtleBot4)</div>
+          <div class="proj-desc">Designed a camera-only navigation system (LiDAR disabled) on TurtleBot4 with a 4-member team. Integrated lane following via ArUco markers, stop sign detection, projective geometry overlays, and obstacle detection. Validated in both Gazebo simulation and real-hardware demonstrations.</div>
+          <div class="proj-section-label">Technologies:</div>
+          <div class="proj-tech-row">
+            <span class="tech-pill">ROS2</span><span class="tech-pill">Gazebo</span><span class="tech-pill">Python</span><span class="tech-pill">OpenCV</span><span class="tech-pill">TurtleBot4</span>
+          </div>
+          <div class="proj-section-label">Highlights:</div>
+          <div class="proj-hl-row">
+            <span class="hl-pill hl-r">Zero LiDAR</span>
+            <span class="hl-pill hl-y">ArUco Lane Follow</span>
+            <span class="hl-pill hl-b">Stop Sign Detection</span>
+            <span class="hl-pill hl-g">Sim + Real Hardware</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Ponaswin-03/turtlebot4_perception_control" target="_blank" class="proj-btn">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Code
+            </a>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="media-row">
+            <div class="media-slot">
+              <img src="assets/gazebo.png" alt="Gazebo simulation">
+            </div>
+            <div class="media-slot">
+              <img src="assets/rqt.png" alt="RQT visualization">
+            </div>
+          </div>
+          <div class="media-slot full">
+            <video autoplay muted loop playsinline src="assets/perception_final.mp4"></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="proj-card">
+        <div class="proj-left">
+          <div class="proj-num">03 / 04</div>
+          <span class="proj-category">Path Planning · 🏆 1st Place</span>
+          <div class="proj-title">A* Path Planning — Non-Holonomic TurtleBot4</div>
+          <div class="proj-desc">Implemented A* with differential drive constraints for TurtleBot4. Validated in Gazebo and FalconSim before real-world deployment. Won 1st place in hardware implementation in the robotics cohort — completed the maze in 28.6s, 50% faster than the 2nd place team.</div>
+          <div class="proj-section-label">Technologies:</div>
+          <div class="proj-tech-row">
+            <span class="tech-pill">ROS2</span><span class="tech-pill">Python</span><span class="tech-pill">Gazebo</span><span class="tech-pill">FalconSim</span><span class="tech-pill">TurtleBot4</span>
+          </div>
+          <div class="proj-section-label">Highlights:</div>
+          <div class="proj-hl-row">
+            <span class="hl-pill hl-r">🏆 1st Place</span>
+            <span class="hl-pill hl-y">28.6s Maze Run</span>
+            <span class="hl-pill hl-b">50% Faster</span>
+            <span class="hl-pill hl-g">Sim-to-Real</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Ponaswin-03/PathPlanning" target="_blank" class="proj-btn">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Code
+            </a>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="media-row">
+            <div class="media-slot">
+              <video autoplay muted loop playsinline src="assets/astar_maze.mp4"></video>
+            </div>
+            <div class="media-slot">
+              <video autoplay muted loop playsinline src="assets/falcon.mp4"></video>
+            </div>
+          </div>
+          <div class="media-slot full">
+            <video autoplay muted loop playsinline src="assets/maze_run.mp4"></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="proj-card no-media">
+        <div class="proj-left">
+          <div class="proj-num">04 / 04</div>
+          <span class="proj-category">ROS2 / C++ · Multi-Camera</span>
+          <div class="proj-title">Autonomous Navigation &amp; Object Localization</div>
+          <div class="proj-desc">Developed a ROS2/C++ autonomous navigation system for TurtleBot3 in Gazebo using a proportional controller for precise positioning beneath target objects. Multi-camera sensor data processed via camera-to-world frame transforms for sequential autonomous task execution and return-to-origin.</div>
+          <div class="proj-section-label">Technologies:</div>
+          <div class="proj-tech-row">
+            <span class="tech-pill">ROS2</span><span class="tech-pill">C++</span><span class="tech-pill">Python</span><span class="tech-pill">Gazebo</span><span class="tech-pill">TurtleBot3</span>
+          </div>
+          <div class="proj-section-label">Highlights:</div>
+          <div class="proj-hl-row">
+            <span class="hl-pill hl-r">C++ Pipeline</span>
+            <span class="hl-pill hl-y">Multi-Camera Fusion</span>
+            <span class="hl-pill hl-b">World Frame Transforms</span>
+            <span class="hl-pill hl-g">Autonomous Return</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Ponaswin-03/turtlebot_navigation_object_localization" target="_blank" class="proj-btn">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-heading">
+    <div class="sh-tag">// Academic work</div>
+    <div class="sh-title">Research Experience</div>
+    <div class="sh-sub">Pushing the frontier of autonomous systems</div>
+  </div>
+  <div class="research-wrap">
+    <div class="res-grid">
+      <div class="res-card">
+        <div class="res-period">Sep 2025 — Present</div>
+        <div class="res-org-logo"><img src="assets/umd.svg" alt="GAMMA Lab"></div>
+        <div class="res-title">Graduate Research Assistant</div>
+        <div class="res-org">Geometric Algorithms for Modeling, Motion and Animation Lab · UMD</div>
+        <div class="res-desc">Multi-modal navigation stack for Ghost Robotics quadrupeds — LiDAR, depth cameras, and IMU fusion. Co-authored DR.Nav (IROS 2026 submission).</div>
+      </div>
+      <div class="res-card">
+        <div class="res-period">May 2025 — Dec 2025</div>
+        <div class="res-org-logo"><img src="assets/umd.svg" alt="PRG"></div>
+        <div class="res-title">Graduate Research Assistant</div>
+        <div class="res-org">Perception &amp; Robotics Group · UMD</div>
+        <div class="res-desc">Robotic grasping pipeline using AnyGrasp with UR5 arm and ZED stereo camera. ICP for point cloud alignment and object pose refinement.</div>
+      </div>
+      <div class="res-card">
+        <div class="res-period">Dec 2023 — Mar 2024</div>
+        <div class="res-org-logo"><img src="assets/isro.png" alt="ISRO"></div>
+        <div class="res-title">Research Assistant</div>
+        <div class="res-org">ISTRAC · Indian Space Research Organisation</div>
+        <div class="res-desc">Model-based Antenna Terminal System in MATLAB-Simulink. 3 SolidWorks modules exported to URDF for ROS control validation. Guide: Mr. Ramesh A, Scientist/Engineer-SF.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-heading">
+    <div class="sh-tag">// Technical expertise</div>
+    <div class="sh-title">Skills</div>
+    <div class="sh-sub">Tools and technologies I work with</div>
+  </div>
+  <div class="skills-wrap">
+
+    <div class="sk-group">
+      <div class="sk-group-title">Programming Languages &amp; Systems</div>
+      <div class="sk-icon-row">
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=cpp" alt="C++"><span class="sk-icon-label">C++</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=py" alt="Python"><span class="sk-icon-label">Python</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=java" alt="Java"><span class="sk-icon-label">Java</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=bash" alt="Bash"><span class="sk-icon-label">Bash</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=matlab" alt="MATLAB"><span class="sk-icon-label">MATLAB</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=linux" alt="Linux"><span class="sk-icon-label">Linux</span></div>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-group-title">Robotics &amp; AI Frameworks</div>
+      <div class="sk-icon-row">
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=ros" alt="ROS2"><span class="sk-icon-label">ROS2</span></div>
+        <div class="sk-icon-item"><img src="assets/nvidia-isaac.webp" alt="Isaac Sim"><span class="sk-icon-label">Isaac Sim</span></div>
+        <div class="sk-icon-item"><img src="assets/gazebo-original.svg" alt="Gazebo"><span class="sk-icon-label">Gazebo</span></div>
+        <div class="sk-icon-item"><img src="assets/logo_pro_small.e0fa34bd.png" alt="PX4"><span class="sk-icon-label">PX4</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=pytorch" alt="PyTorch"><span class="sk-icon-label">PyTorch</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow"><span class="sk-icon-label">TensorFlow</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=opencv" alt="OpenCV"><span class="sk-icon-label">OpenCV</span></div>
+        <div class="sk-icon-item"><img src="assets/nav2_logo_powered.png" alt="Nav2"><span class="sk-icon-label">Nav2</span></div>
+        <div class="sk-icon-item"><img src="assets/moveit_logo-black.png" alt="MoveIt"><span class="sk-icon-label">MoveIt2</span></div>
+        <div class="sk-icon-item"><div class="sk-text-icon-box">SLAM</div><span class="sk-icon-label">SLAM</span></div>
+
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-group-title">DevOps &amp; Cloud Platforms</div>
+      <div class="sk-icon-row">
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=docker" alt="Docker"><span class="sk-icon-label">Docker</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=aws" alt="AWS"><span class="sk-icon-label">AWS</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=git" alt="Git"><span class="sk-icon-label">Git</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=cmake" alt="CMake"><span class="sk-icon-label">CMake</span></div>
+        <div class="sk-icon-item"><img src="https://skillicons.dev/icons?i=github" alt="GitHub"><span class="sk-icon-label">GitHub</span></div>
+      </div>
+    </div>
+
+    <div class="sk-group">
+      <div class="sk-group-title">Hardware Platforms</div>
+      <div class="sk-icon-row">
+        <div class="sk-icon-item"><span class="sk-tag">① Ghost Robotics Quadruped</span></div>
+        <div class="sk-icon-item"><span class="sk-tag">② ModalAI Starling 2 Drone</span></div>
+        <div class="sk-icon-item"><span class="sk-tag">③ TurtleBot 4 AMR</span></div>
+        <div class="sk-icon-item"><span class="sk-tag">④ UR5 Arm</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-heading">
+    <div class="sh-tag">// Work history</div>
+    <div class="sh-title">Experience &amp; Education</div>
+    <div class="sh-sub">My journey through time</div>
+  </div>
+  <div class="exp-wrap">
+    <div class="exp-tabs">
+      <button class="exp-tab active" onclick="switchTab('work',this)">Experience</button>
+      <button class="exp-tab" onclick="switchTab('edu',this)">Education</button>
+    </div>
+    <div id="tab-work" class="exp-section active">
+      <div class="exp-cards">
+        <div class="exp-card">
+          <div class="exp-logo"><img src="assets/umd.svg" alt="UMD"></div>
+          <div class="exp-main">
+            <div class="exp-period">Jan 2026 — May 2026</div>
+            <div class="exp-role">Graduate Teaching Assistant — Capstone Design Lab</div>
+            <div class="exp-org">ECE Department · University of Maryland</div>
+            <div class="exp-desc">Mentoring teams building end-to-end autonomous drone stacks (ROS2, PX4, Gazebo). Led sim-to-real deployment on ModalAI Starling 2 with RTAB-Map and Open3D dense 3D mapping.</div>
+          </div>
+          <div class="exp-tags-col"><span class="exp-tech-tag">ROS2</span><span class="exp-tech-tag">PX4</span><span class="exp-tech-tag">RTAB-Map</span></div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-logo"><img src="assets/umd.svg" alt="UMD"></div>
+          <div class="exp-main">
+            <div class="exp-period">Jan 2026 — May 2026</div>
+            <div class="exp-role">Graduate Teaching Assistant — Computer Vision</div>
+            <div class="exp-org">CMNS · University of Maryland</div>
+            <div class="exp-desc">Mentoring 70+ graduate students in advanced vision algorithms — deep learning, feature extraction, and 3D reconstruction final projects.</div>
+          </div>
+          <div class="exp-tags-col"><span class="exp-tech-tag">CV</span><span class="exp-tech-tag">Deep Learning</span></div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-logo"><img src="assets/umd.svg" alt="UMD"></div>
+          <div class="exp-main">
+            <div class="exp-period">Sep 2025 — Dec 2025</div>
+            <div class="exp-role">Graduate Teaching Assistant — Robotics (ML focus)</div>
+            <div class="exp-org">CMNS · University of Maryland</div>
+            <div class="exp-desc">Assisted teaching ML for Robotics (Reinforcement Learning) for 50+ graduate students. Mentored teams on ROS2-based simulation and hardware projects.</div>
+          </div>
+          <div class="exp-tags-col"><span class="exp-tech-tag">RL</span><span class="exp-tech-tag">ROS2</span></div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-logo"><img src="assets/bi.png" alt="Brakes India"></div>
+          <div class="exp-main">
+            <div class="exp-period">Mar 2024 — Jul 2024</div>
+            <div class="exp-role">Graduate Engineer Trainee</div>
+            <div class="exp-org">Brakes India Private Limited</div>
+            <div class="exp-desc">Deployed Python and Excel VBA automation for fault logging and traceability workflows, reducing manual workload by 30%. Minimized assembly line downtime through traceability error resolution.</div>
+          </div>
+          <div class="exp-tags-col"><span class="exp-tech-tag">Python</span><span class="exp-tech-tag">VBA</span><span class="exp-tech-tag">−30% workload</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="tab-edu" class="exp-section">
+      <div class="exp-cards">
+        <div class="exp-card">
+          <div class="exp-logo"><img src="assets/umd.svg" alt="UMD"></div>
+          <div class="exp-main">
+            <div class="exp-period">Sep 2024 — May 2026</div>
+            <div class="exp-role">Master of Engineering — Robotics</div>
+            <div class="exp-org">University of Maryland · College Park, USA</div>
+            <div class="exp-desc">Coursework in autonomous systems, ML for robotics, computer vision, motion planning, and embedded systems.</div>
+          </div>
+          <div class="exp-tags-col"><span class="exp-tech-tag">Robotics</span></div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-logo"><img src="assets/skcet.webp" alt="SKCET"></div>
+          <div class="exp-main">
+            <div class="exp-period">Sep 2020 — Mar 2024</div>
+            <div class="exp-role">Bachelor of Engineering — Mechatronics</div>
+            <div class="exp-org">Sri Krishna College of Engineering and Technology · Coimbatore, India</div>
+            <div class="exp-desc">Foundations in mechanical systems, control theory, electronics, and robotics.</div>
+          </div>
+          <div class="exp-tags-col"><span class="exp-tech-tag">Mechatronics</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section id="publication">
+  <div class="section-heading">
+    <div class="sh-tag">// Research output</div>
+    <div class="sh-title">Publication</div>
+    <div class="sh-sub">Peer-reviewed research contributions</div>
+  </div>
+  <div class="pub-wrap">
+    <div class="pub-card">
+      <div class="pub-badge">Conference Paper · Feb 2026</div>
+      <div class="pub-title">DR. Nav: Semantic-Geometric Representations for Proactive Dead-End Recovery and Navigation</div>
+      <div class="pub-venue">Submitted to IEEE IROS 2026 — International Conference on Intelligent Robots and Systems</div>
+      <div class="pub-desc">Co-authored research on proactive dead-end recovery using semantic-geometric representations for robust robot navigation in complex environments. Developed at GAMMA Lab, University of Maryland.</div>
+      <a href="https://arxiv.org/abs/2511.12778" target="_blank" class="proj-btn" style="display:inline-flex;margin-top:1.5rem;">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        arXiv Paper
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-heading">
+    <div class="sh-tag">// Get in touch</div>
+    <div class="sh-title">Contact</div>
+    <div class="sh-sub">Let's build something together</div>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-inner">
+      <div class="contact-title">Open to full-time roles</div>
+      <div class="contact-sub">Currently seeking positions in robotics software engineering — autonomous systems, perception, and motion planning.</div>
+      <div class="contact-links">
+        <a class="contact-btn" href="mailto:aswin03@umd.edu">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          aswin03@umd.edu
+        </a>
+        <a class="contact-btn" href="https://github.com/Ponaswin-03" target="_blank">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          github/Ponaswin-03
+        </a>
+        <a class="contact-btn" href="tel:2403554007">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          240-355-4007
+        </a>
+        <a class="contact-btn" href="assets/Pon_Aswin_Sankaralingam_Resume.pdf" target="_blank">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Resume PDF
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-l">Pon Aswin Sankaralingam · College Park, MD</div>
+  <div class="footer-r">ponaswin-03.github.io</div>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.exp-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.exp-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
